@@ -1,0 +1,93 @@
+ion-menu {
+  max-width: 300px;
+  overflow: visible;
+}
+
+ion-split-pane {
+  overflow: visible;
+}
+
+#app {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  
+  // .ion-page {
+  //   flex: 1
+  //   // left: 100px !important; 
+  // }
+
+  #mainContent {
+    position: relative;
+    flex: 1;
+    height: 100%;
+  }
+  
+  #sidebar {
+    position: relative;
+    flex: 0 0 305px;
+    height: 100%;
+    background: linear-gradient(166deg, var(--ion-color-primary), var(--ion-color-primary-shade));
+
+    &:hover {
+      #menuToggle {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    #menuToggle {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      top: 3rem;
+      right: -12.5px;
+      z-index: 99;
+      outline: none;
+      appearance: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: var(--ion-color-primary);
+      margin-bottom: .75rem;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(var(--ion-color-dark-rgb), .3);
+      transition: all 150ms ease-out;
+
+      ion-icon {
+        flex: 0 0 1rem;
+        font-size: 1rem;
+        margin: auto;
+        color: var(--ion-color-primary);
+      }
+      
+      &:hover {
+        background: var(--ion-color-secondary-tint);
+
+        ion-icon {
+          color: white;
+        }
+      }
+
+    }
+  }
+}
+
+
+ion-menu {
+  --min-width: 305px;
+  --max-width: 305px;
+  overflow: visible;
+  
+  ion-content {
+    --padding-top: 1.25rem;
+    --padding-end: 1rem;
+    --padding-bottom: 1rem;
+    --padding-start: .66rem;
+    --background: linear-gradient(166deg, var(--ion-color-primary), var(--ion-color-primary-shade));
+  }
+}

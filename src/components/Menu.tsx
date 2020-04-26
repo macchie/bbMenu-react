@@ -7,94 +7,100 @@ import {
   IonListHeader,
   IonMenu,
   IonMenuToggle,
-  IonNote,
 } from '@ionic/react';
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
-import './Menu.css';
+import { logoBitbucket, search, add, apps, helpCircle, fileTrayFull, code, folder, gitPullRequest, cut, chevronBack } from 'ionicons/icons';
+import './Menu.scss';
 
 interface AppPage {
   url: string;
-  iosIcon: string;
-  mdIcon: string;
+  icon: string;
   title: string;
 }
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
+    title: 'Your work',
     url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    icon: fileTrayFull
   },
   {
-    title: 'Outbox',
+    title: 'Repositories',
     url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
+    icon: code
   },
   {
-    title: 'Favorites',
+    title: 'Projects',
     url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
+    icon: folder
   },
   {
-    title: 'Archived',
+    title: 'Pull requests',
     url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
+    icon: gitPullRequest
   },
   {
-    title: 'Trash',
+    title: 'Snippets',
     url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
+    icon: cut
   }
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
 const Menu: React.FC = () => {
-  const location = useLocation();
+  const location = useLocation(); 
 
   return (
-    <IonMenu contentId="main" type="overlay">
-      <IonContent>
-        <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
-          {appPages.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" icon={appPage.iosIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
-        </IonList>
+    // <IonMenu contentId="main" type="overlay" id="bbMenu">
+    //     <IonContent>
+          <div id="bbMenu">
+            <div id='subMenu'>
+              <div id="subMenuSection">
+                <button className="large">
+                  <IonIcon icon={logoBitbucket} />
+                </button>
 
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
-        </IonList>
-      </IonContent>
-    </IonMenu>
+                <button>
+                  <IonIcon icon={search} />
+                </button>
+
+                <button>
+                  <IonIcon icon={add} />
+                </button>
+              </div>
+
+              <div id="subMenuSection">
+                <button>
+                  <IonIcon icon={apps} />
+                </button>
+
+                <button>
+                  <IonIcon icon={helpCircle} />
+                </button>
+
+                <button className="large">
+                  <img alt="avatar" src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"/>
+                </button>
+              </div>
+            </div>
+            <IonList>
+              <IonListHeader>bbMenu</IonListHeader>
+
+              {appPages.map((appPage, index) => {
+                return (
+                  <IonMenuToggle key={index} autoHide={false}>
+                    <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
+                      <IonIcon slot="start" icon={appPage.icon} />
+                      <IonLabel>{appPage.title}</IonLabel>
+                    </IonItem>
+                  </IonMenuToggle>
+                );
+              })}
+            </IonList>
+          </div>
+    //     </IonContent>
+    // </IonMenu>
   );
 };
 
